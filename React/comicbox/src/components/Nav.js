@@ -83,22 +83,3 @@
 //     <div>Nav</div>
 //   )
 // }
-
-
-//# Tutor
-
-// import { AppBar, Toolbar, Typography } from '@mui/material';
-// import React from 'react';
-
-// export default function Navbar(ignore) {
-//   return (
-//     <AppBar position="fixed" color="primary">
-//       <Toolbar>
-//         <Typography variant="h6">
-//           Hello
-//         </Typography>
-//       </Toolbar>
-//     </AppBar>
-//     ignore
-//   );
-// }

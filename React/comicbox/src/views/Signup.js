@@ -67,16 +67,3 @@ export default class Signup extends Component {
 //     <div>Signup</div>
 //   )
 // }
-
-
-
-
-
-//#tutor
-
-// import React from 'react';
-
-// function SignUp() {
-//   return <div>SignUp</div>;
-// }
-// export default SignUp;

@@ -77,30 +77,3 @@ export default class Login extends Component {
 //     <div>Login</div>
 //   )
 // }
-
-
-
-
-
-//#tutor
-
-// import React from 'react';
-// import Grid from '@mui/material/Grid';
-// import SignIn from './SignIn';
-
-// function LandingPage(login) {
-//   return (
-//     <Grid container spacing={2}>
-//       <Grid item md={6}>
-//         <img src="" alt="" />
-//       </Grid>
-
-//       <Grid item md={6}>
-//         <SignIn />
-//       </Grid>
-//     </Grid>
-//     login
-//   );
-// }
-
-// export default LandingPage;
