@@ -1,5 +1,5 @@
 # What is the project about 
-- This project is a fullstack implmentation to reading and display information from comic vines using their api
+- This project is a fullstack implmentation to reading and display information from comic vine using their api
 
 # Global features/objective
 1.  signin and signup
@@ -49,3 +49,6 @@ superman strikes back 2-> []
 quick look set up
 V
 https://lucid.app/lucidchart/3538d285-cfe7-49a7-9538-6e2c08e77a7a/edit?invitationId=inv_69100ffc-58ee-4e67-8019-abbb06285454#
+
+comic vine api call example
+https://comicvine.gamespot.com/api/issues/1-1000000/?api_key=(apikey here)&format=json
