@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 
 export default function Nav2() {
  
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

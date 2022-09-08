@@ -54,16 +54,3 @@ export default class Signup extends Component {
         )
     }
 }
-
-
-
-
-//#rfc
-
-// import React from 'react'
-
-// export default function Signup() {
-//   return (
-//     <div>Signup</div>
-//   )
-// }

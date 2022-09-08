@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import ComicBox from './components/ComicBoxC'
-import Login from './components/LoginC'
-import Profile from './components/ProfileC'
-import Search from './components/SearchC'
-import Signup from './components/SignupC'
+import ComicBox from './views/ComicBoxView'
+import Login from './views/LoginView'
+import Profile from './views/ProfileView'
+import Search from './views/SearchView'
+import Register from './views/RegisterView'
 
 export default function App() {
 
@@ -30,13 +30,12 @@ export default function App() {
 
       <div className='main'>
 
-
         <Routes>
-          <Route path='/Search' element={<Search />} />
-          <Route path='/ComicBox' element={<ComicBox />} />
-          <Route path='/SignUp' element={<Signup />} />
-          <Route path='/Profile' element={<Profile />} />
-          <Route path='/Login' element={<Login logMeIn={logMeIn} />} />
+          <Route path='/search' element={<Search />} />
+          <Route path='/comicbox' element={<ComicBox />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/login' element={<Login logMeIn={logMeIn} />} />
         </Routes>
 
       </div>
@@ -44,20 +43,3 @@ export default function App() {
     </BrowserRouter>
   )
 };
-
-
-
-
-//#rcc
-
-// import React from 'react';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="main">
-//     </div>
-//   );
-// }
-
-// export default App;

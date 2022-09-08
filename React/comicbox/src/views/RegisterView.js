@@ -7,7 +7,9 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import EditIcon from '@mui/icons-material/Edit';
+import PersonIcon from '@mui/icons-material/Person';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -24,6 +26,19 @@ export default function Signup() {
   };
 
   return (
+
+  <div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+        <Typography align="center" variant="h3" component="div" sx={{ flexGrow: 1 }}>
+            ComicBox
+        </Typography>
+        </Toolbar>
+      </AppBar>
+    </Box>
+
+
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -35,11 +50,11 @@ export default function Signup() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <EditIcon />
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+            <PersonIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Edit Profile
+            Create a New Account
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -71,11 +86,13 @@ export default function Signup() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Save Changes
+              Create Account
             </Button>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
-  );
+
+  </div>
+);
 }
