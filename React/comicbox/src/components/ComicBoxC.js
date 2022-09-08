@@ -15,7 +15,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //need to make it contenual or load p
 
 const theme = createTheme();
 
-export default function Album() {
+export default function ComicBox() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
