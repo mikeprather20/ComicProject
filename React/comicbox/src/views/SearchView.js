@@ -10,16 +10,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SearchBar from '../components/SearchComp';
+import NavBar from '../components/Nav';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //need to make it contenual or load per scroll?
 
 const theme = createTheme();
 
-export default function ComicBox() {
+export default function SearchComic() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* this is where the navbar goes*/}
+      navbar goes here{NavBar}
       <main>
         <Box
           sx={{
@@ -38,7 +40,8 @@ export default function ComicBox() {
             >
               Search for Comic
             </Typography>
-            {/* in here we put in the search bar */}
+            search bar goes here
+            {SearchBar}
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">

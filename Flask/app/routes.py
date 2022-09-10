@@ -34,7 +34,6 @@ def getToken():
                 'data':  user.to_dict()
             }
 
-
 @app.route('/api/login', methods=["POST"])
 def apiLogMeIn():
     data = request.json
@@ -46,11 +45,15 @@ def apiLogMeIn():
 
     if user:
         # check password
-        if check_password_hash(user.password, password):
+        if password == (user.password):
             return {
                 'status': 'ok',
                 'message': "You have successfully logged in",
-                'data':  user.to_dict()
+                'data': { 
+                          'id': user.id,
+                          'username': user.username,
+                          'email': user.email
+                        }
             }
         return {
             'status': 'not ok',
@@ -94,19 +97,47 @@ def SignMeUp():
 ##########################################################
 
 
-@app.route('/edit', methods=["GET", "POST"])
-def editProfile():
-    user = User.query.get(user.id)
+@app.route('/users/<user_id>/edit', methods=["GET", "POST"])
+def editProfile(user_id):
+
+    # Get User Information
+    user = User.query.get(user_id)
     
     if request.method == "POST":
-        if user in db():
-            email = email.data
-            password = password.data
-
+        
+        # Get Request Data
+        data = request.json
+        email = data['email']
+        password = data['password']
+        
+        if user:
+            # Update User Information
             user.email=email
             user.password=password
+            
+            # Save To DB
+            print(user.email)
+            # db.session.update(user)
             db.session.commit()
-    return "hi"
+            
+            # Return Updated Information
+            return {
+                'status': 'ok',
+                'message': "You have successfully updated your information.",
+                # 'data':  user.to_dict()
+                'data': { 
+                          'id': user.id,
+                          'username': user.username,
+                          'email': user.email
+                        }
+                    }
+    
+    # Return User Information
+    return { 
+              'id': user.id,
+              'username': user.username,
+              'email': user.email
+            }
 
 
 @app.route('/search', methods=["POST"])
