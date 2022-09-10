@@ -32,7 +32,7 @@ list responses, {image, name, volume, issue#}
 Models
 Users {id}
 UserComix {comicId, userId}
-Comics {imageUrl, title, subtitle, volume, edition, userId,id}
+Comics {imageUrl, name, volume, issue# , userId,id}
 
 
 Routes
@@ -49,7 +49,6 @@ superman strikes back 2-> []
 quick look set up
 V
 https://lucid.app/lucidchart/3538d285-cfe7-49a7-9538-6e2c08e77a7a/edit?invitationId=inv_69100ffc-58ee-4e67-8019-abbb06285454#
-
 
 
 comic vine api call examples

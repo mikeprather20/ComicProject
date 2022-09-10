@@ -9,6 +9,11 @@ from werkzeug.security import check_password_hash
 from app.models import Users
 from app.models import db
 
+# Import Basic Auth
+from flask_basicauth import BasicAuth
+from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
+basic_auth = HTTPBasicAuth()
+
 
 @app.route('/hi')
 def hi():

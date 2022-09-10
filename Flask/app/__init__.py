@@ -7,18 +7,23 @@ from flask_cors import CORS
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from werkzeug.security import check_password_hash
 
-from .models import User
+# Import Basic Auth
+from flask_basicauth import BasicAuth
+
+
+from .models import Users
 
 app = Flask(__name__)
 login = LoginManager()
 moment = Moment(app)
+basic_auth = BasicAuth(app)
 CORS(app)
 
 
 
 @login.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    return Users.query.get(user_id)
 
 
 app.config.from_object(Config)
