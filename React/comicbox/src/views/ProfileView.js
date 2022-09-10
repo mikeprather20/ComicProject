@@ -5,8 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import EditIcon from '@mui/icons-material/Edit';
@@ -26,20 +24,6 @@ export default function Profile() {
   };
 
   return (
-
-  <div>
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-        <Typography align="center" variant="h3" component="div" sx={{ flexGrow: 1 }}>
-            ComicBox
-        </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
-
-
-
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -93,6 +77,5 @@ export default function Profile() {
         </Box>
       </Container>
     </ThemeProvider>
-  </div>
 );
 }
