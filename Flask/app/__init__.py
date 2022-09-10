@@ -11,7 +11,7 @@ from werkzeug.security import check_password_hash
 from flask_basicauth import BasicAuth
 
 
-from .models import Users
+from .models import User
 
 app = Flask(__name__)
 login = LoginManager()
@@ -23,7 +23,7 @@ CORS(app)
 
 @login.user_loader
 def load_user(user_id):
-    return Users.query.get(user_id)
+    return User.query.get(user_id)
 
 
 app.config.from_object(Config)

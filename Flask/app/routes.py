@@ -1,12 +1,13 @@
+from app.apiauthhelper import basic_auth, token_auth
 from flask import request
 from app import app
 
-#import login funcitonality
+# import login funcitonality
 from flask_login import current_user
 from werkzeug.security import check_password_hash
 
 # import models
-from app.models import Users
+from app.models import User
 from app.models import db
 
 # Import Basic Auth
@@ -19,8 +20,10 @@ basic_auth = HTTPBasicAuth()
 def hi():
     return 'Hello World!'
 
-#LOG IN
+# LOG IN
 ##################################################################
+
+
 @app.route('/token', methods=['POST'])
 @basic_auth.login_required
 def getToken():
@@ -39,7 +42,7 @@ def apiLogMeIn():
     username = data['username']
     password = data['password']
 
-    user = Users.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first()
 
     if user:
         # check password
@@ -59,23 +62,25 @@ def apiLogMeIn():
     }
 ##############################################################
 
-@app.route('/logout', methods=["GET", "POST"])
-def logMeOut():
-    if current_user.is_authenticated:
-        return #something...
 
-#SIGN UP
+@app.route('/logout', methods=["POST"])
+def logMeOut():
+        return "hi"
+
+# SIGN UP
 ########################################################
+
+
 @app.route('/signup', methods=["POST"])
 def SignMeUp():
     data = request.json
-     
+
     username = data['username']
     email = data['email']
     password = data['password']
 
     # add user to database
-    user = Users(username, email, password)
+    user = User(username, email, password)
 
     # add instance to our db
     db.session.add(user)
@@ -85,41 +90,49 @@ def SignMeUp():
         'message': f"Successfully created user {username}"
     }
 
-from app.apiauthhelper import basic_auth, token_auth
+
 ##########################################################
 
 
-@app.route('/edit', methods = ["GET","POST"])
+@app.route('/edit', methods=["GET", "POST"])
 def editProfile():
-    if current_user.is_authenticated:
-        return #something...
+    user = User.query.get(user.id)
+    
+    if request.method == "POST":
+        if user in db():
+            email = email.data
+            password = password.data
+
+            user.email=email
+            user.password=password
+            db.session.commit()
+    return "hi"
 
 
-@app.route('/search', methods=["GET", "POST"])
+@app.route('/search', methods=["POST"])
 def comicSearch():
-    if current_user.is_authenticated:
-        return #something...
+        return "hi"
 
 
 @app.route('/store', methods = ["GET","POST"])
 def storeComic():
-    if current_user.is_authenticated:
-        return #something...
+        return "hi"
 
 
 
 
-#not sure if these are needed
+# not sure if these are needed
 ####################################################
 @app.route('/add', methods = ["GET","POST"])
 def addToBox():
-    if current_user.is_authenticated:
-        return #something...
+        return "hi"
 
 
 @app.route('/remove', methods = ["GET","POST"])
 def removeFromBox():
-    if current_user.is_authenticated:
-        return #something...
+        return "hi"
 
+@app.route('/comicbox', methods = ["GET", "POST"])
+def comicbox():
+        return "hi"
 
