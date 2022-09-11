@@ -1,7 +1,7 @@
 import React from 'react'
-import SearchIcon from '@mui/icons-material/Search';
-import Input from '@mui/material/Input';
-import Box from '@mui/material/Box';
+// import SearchIcon from '@mui/icons-material/Search';
+// import Input from '@mui/material/Input';
+// import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -18,15 +18,29 @@ export default function SearchComp(coimic, user) {
     // FOR A COMIC WITH THE TEXT INPUT THAT THE USER GAVE
     const SearchBar = ({ placeholder, onChange, searchBarWidth }) => {
         return (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <SearchIcon sx={{ marginRight: '10px' }} />
-                <Input
-                    placeholder={placeholder}
-                    onChange={onChange}
-                    sx={{width: searchBarWidth, color: 'rgba(0, 0, 0, 0.6)', fontSize: '1.1rem'}}
-                    disableUnderline
-                />
-            </Box>
+            // <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            //     <SearchIcon sx={{ marginRight: '10px' }} />
+            //     <Input
+            //         placeholder={placeholder}
+            //         onChange={onChange}
+            //         sx={{width: searchBarWidth, color: 'rgba(0, 0, 0, 0.6)', fontSize: '1.1rem'}}
+            //         disableUnderline
+            //     />
+            // </Box>
+
+            //THIS IS A BOOTSTRAP SEARCH BAR
+            <div class="container">
+            <div class="row height d-flex justify-content-center align-items-center">
+              <div class="col-md-8">
+                <div class="search">
+                  <i class="fa fa-search"></i>
+                  <input type="text" class="form-control" placeholder="Search Comic"/>
+                  <button class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </div>
+            </div>
+
         )
     }
 
