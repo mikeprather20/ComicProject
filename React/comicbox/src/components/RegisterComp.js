@@ -11,7 +11,7 @@ export default class Signup extends Component {
             return
         }
 
-        const res = await fetch('http://127.0.0.1:5000/api/signup', {
+        const res = await fetch('http://127.0.0.1:5000/signup', {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json'

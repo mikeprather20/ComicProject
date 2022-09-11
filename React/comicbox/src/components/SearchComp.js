@@ -111,3 +111,25 @@ export default function SearchComp(coimic, user) {
     </div>
   )
 }
+
+
+// card
+// section.py-5
+// .container.px-4.px-lg-5.mt-5
+//   .row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
+//     .col.mb-5
+//       .card.h-100
+//         // Comic Image
+//          img.card-img-top(src='https://dummyimage.com/450x300/dee2e6/6c757d.jpg', alt='...')
+//           // Comic details
+//             .card-body.p-4
+//               .text-center
+//              // Comic Name
+//                  h5.fw-bolder Comic name here
+//                  // comic volume and issue
+//                | comic volume $ issue#
+//                 //action
+//                 .card-footer.p-4.pt-0.border-top-0.bg-transparent
+//             .text-center
+//      a.btn.btn-outline-dark.mt-auto(href='#') Add to Box
+//    .col.mb-5

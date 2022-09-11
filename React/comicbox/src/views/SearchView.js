@@ -19,6 +19,8 @@ const theme = createTheme();
 
 export default function SearchComic() {
   return (
+
+
     <div>
     <ThemeProvider theme={theme}>
       <CssBaseline />

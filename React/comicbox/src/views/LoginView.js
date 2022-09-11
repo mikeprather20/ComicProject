@@ -15,14 +15,34 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-export default function Login() {
-  const handleSubmit = (event) => {
+// export default function Login() {
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const data = new FormData(event.currentTarget);
+//     console.log({
+//       username: data.get('username'),
+//       password: data.get('password'),
+//     });
+//   };
+
+export default function Login(){
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
     });
+    // Send Request To Flask
+    return fetch('http://localhost:5000/api/login', {
+      'method': 'POST',
+      headers : {
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error))
   };
 
   return (
@@ -62,7 +82,7 @@ export default function Login() {
               fullWidth
               id="username"
               label="Username"
-              name="Username"
+              name="username"
               autoComplete="username"
               autoFocus
             />
@@ -86,7 +106,7 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   {"Don't have an account? Register now."}
                 </Link>
               </Grid>
