@@ -78,7 +78,7 @@ def logMeOut():
 # SIGN UP
 ########################################################
 
-@app.route('/signup', methods=["POST"])
+@app.route('/api/signup', methods=["POST"])
 def SignMeUp():
     data = request.json
 
@@ -92,9 +92,15 @@ def SignMeUp():
     # add instance to our db
     db.session.add(user)
     db.session.commit()
+
+# Return Response
     return {
         'status': 'ok',
-        'message': f"Successfully created user {username}"
+        'message': "You have successfully Signed up",
+        'data': { 
+                  'username': username,
+                  'email': email
+                }
     }
 
 
