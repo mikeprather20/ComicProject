@@ -12,20 +12,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useNavigate} from 'react-router-dom';
+
 
 const theme = createTheme();
 
-// export default function Login() {
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const data = new FormData(event.currentTarget);
-//     console.log({
-//       username: data.get('username'),
-//       password: data.get('password'),
-//     });
-//   };
-
 export default function Login(){
+
+  // Assign Use Navigate Constant
+  const navigate = useNavigate()
+  
+  // Login Submit Button
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -33,19 +30,21 @@ export default function Login(){
       username: data.get('username'),
       password: data.get('password'),
     });
-
-    
-
-
+  
     // Send Request To Flask
-    return fetch('http://localhost:5000/api/login', {
+    return await fetch('http://localhost:5000/api/login', {
       'method': 'POST',
       headers : {
         'Content-Type': 'application/json'
       },
-      body:JSON.stringify(data)
+      body:JSON.stringify({
+        username: data.get('username'),
+        password: data.get('password'),
+      })
     })
+    // Navigate To ComicBox Successful Login
     .then(response => response.json())
+    .then(data => data.status === 'ok' ? navigate('/comicbox', data.data) : console.log("Login Failed."))
     .catch(error => console.log(error))
   };
 

@@ -12,19 +12,42 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import {useNavigate} from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function Signup() {
-  const handleSubmit = (event) => {
+  
+  // Assign Use Navigate Constant
+  const navigate = useNavigate()
+  
+  // Signup Submit Button
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      username: data.get('username'),
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
     });
-  };
+    
+    // Send Request To Flask
+    return await fetch('http://localhost:5000/api/signup', {
+      'method': 'POST',
+      headers : {
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        username: data.get('username'),
+        email: data.get('email'),
+        password: data.get('password')
+      })
+    })
+    // Navigate To ComicBox Successful Login
+    .then(response => response.json())
+    .then(data => data.status === 'ok' ? navigate('/comicbox', data.data) : console.log("Signup Failed."))
+    .catch(error => console.log(error))
+  }
 
   return (
 
