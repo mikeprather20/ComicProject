@@ -1,10 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -49,17 +47,6 @@ export default function Login(){
   };
 
   return (
-<div>
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-        <Typography align="center" variant="h3" component="div" sx={{ flexGrow: 1 }}>
-            ComicBox
-        </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
-
 
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -118,6 +105,5 @@ export default function Login(){
         </Box>
       </Container>
     </ThemeProvider>
-  </div>
   );
 }

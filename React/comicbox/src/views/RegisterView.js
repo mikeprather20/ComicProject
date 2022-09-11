@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,8 +8,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import PersonIcon from '@mui/icons-material/Person';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
@@ -50,18 +48,6 @@ export default function Signup() {
   }
 
   return (
-
-  <div>
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-        <Typography align="center" variant="h3" component="div" sx={{ flexGrow: 1 }}>
-            ComicBox
-        </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
-
 
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -133,6 +119,5 @@ export default function Signup() {
         </Box>
       </Container>
     </ThemeProvider>
-  </div>
 );
 }

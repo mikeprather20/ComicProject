@@ -5,7 +5,8 @@ import Login from './views/LoginView'
 import Profile from './views/ProfileView'
 import Search from './views/SearchView'
 import Register from './views/RegisterView'
-// import Nav from './components/Nav2'
+import Nav2 from './components/Nav2'
+import Nav from './components/Nav'
 
 export default function App() {
 
@@ -24,10 +25,10 @@ export default function App() {
     localStorage.setItem('user', JSON.stringify(user))
   };
 
-  // const logMeOut = () => {
-  //   setUser({})
-  //   localStorage.removeItem('user')
-  // };
+  const logMeOut = () => {
+    setUser({})
+    localStorage.removeItem('user')
+  };
 
 
   return (
@@ -35,8 +36,9 @@ export default function App() {
     <BrowserRouter>
 
       <div className='main'>
+      <Nav/>
 
-      {/* <Nav logMeOut={logMeOut} /> */}
+      <Nav2 logMeOut={logMeOut} />
 
         <Routes>
           <Route path='/search' element={<Search />} />
