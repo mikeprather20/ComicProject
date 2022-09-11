@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import SearchBar from '../components/SearchComp';
 
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //need to make it contenual or load per scroll?
@@ -24,7 +23,6 @@ export default function SearchComic() {
     <div>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      navbar goes here
       <main>
         <Box
           sx={{
@@ -43,8 +41,17 @@ export default function SearchComic() {
             >
               Search for Comic
             </Typography>
-            search bar goes here
-            {SearchBar}
+            <div class="container">
+            <div class="row height d-flex justify-content-center align-items-center">
+              <div class="col-md-8">
+                <div class="search">
+                  <i class="fa fa-search"></i>
+                  <input type="text" class="mx-auto" placeholder="Search Comic"/>
+                  <button class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </div>
+            </div>
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">

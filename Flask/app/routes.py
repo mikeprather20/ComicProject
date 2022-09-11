@@ -171,7 +171,7 @@ def storeComic():
 
 
 #ADD COMIC TO  USERS BOX
-@app.route('/comicbox/<comic_id>/add', methods=["POST"])
+@app.route('/api/box/add', methods=["POST"])
 def addToBox(comic):
     data = request.json
     comic_id = data['ComicId']
