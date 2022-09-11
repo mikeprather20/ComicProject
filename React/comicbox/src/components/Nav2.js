@@ -1,6 +1,7 @@
 //NAVBAR MADE WITH BOOTSTRAP
 
 import React from 'react'
+// import { Link } from 'react-router-dom';
 
 export default function Nav2() {
 
@@ -25,6 +26,9 @@ export default function Nav2() {
         <li class="nav-item">
           <a class="nav-link" href="/">Edit Profile</a>
         </li>
+        {/* <li className="nav-item" onClick={this.props.logMeOut}>
+          <Link className="nav-link" to="/">Log Out</Link>
+        </li> */}
       </ul>
     </div>
   </div>
