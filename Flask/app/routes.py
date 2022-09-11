@@ -15,14 +15,16 @@ from flask_basicauth import BasicAuth
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 basic_auth = HTTPBasicAuth()
 
+#HELLO WORLD
+#################################################################
 
 @app.route('/hi')
 def hi():
     return 'Hello World!'
 
+
 # LOG IN
 ##################################################################
-
 
 @app.route('/token', methods=['POST'])
 @basic_auth.login_required
@@ -63,16 +65,18 @@ def apiLogMeIn():
         'status': 'not ok',
         'message': 'Invalid username.'
     }
-##############################################################
 
+
+#LOG OUT
+##############################################################
 
 @app.route('/logout', methods=["POST"])
 def logMeOut():
         return "hi"
 
+
 # SIGN UP
 ########################################################
-
 
 @app.route('/signup', methods=["POST"])
 def SignMeUp():
@@ -94,8 +98,8 @@ def SignMeUp():
     }
 
 
+#EDIT PROFILE
 ##########################################################
-
 
 @app.route('/users/<user_id>/edit', methods=["GET", "POST"])
 def editProfile(user_id):
@@ -140,24 +144,27 @@ def editProfile(user_id):
             }
 
 
+#SEARCH FOR COMIC
+#############################################################
+
 @app.route('/search', methods=["POST"])
 def comicSearch():
         return "hi"
 
 
+#STORE COMIC IN USERS COMIC BOX
+############################################################
 @app.route('/store', methods = ["GET","POST"])
 def storeComic():
         return "hi"
 
 
-
-
 # not sure if these are needed
-
 ####################################################
-
 #these are not quite right but on the right track
 
+
+#ADD COMIC TO  USERS BOX
 @app.route('/comicbox/<comic_id>/add', methods=["POST"])
 def addToBox(comic):
     data = request.json
@@ -166,6 +173,7 @@ def addToBox(comic):
     comic.addToBox(comic)
     return {'status': 'ok','message': 'Succesfully added comic to users box.'}
 
+#REMOVE COMIC FROM USERS BOX
 @app.route('/comicbox/<comic_id>/remove', methods=["POST"])
 def removeFromBox(comic):
     data = request.json
@@ -175,8 +183,20 @@ def removeFromBox(comic):
     return {'status':'ok', 'message':'Successfully removed comic from box.'}
 
 
-
+#USERS COMICBOX
 @app.route('/comicbox', methods = ["GET", "POST"])
 def comicbox():
         return "hi"
 
+
+###########DELETE ACCOUNT################
+#may incorporate this
+
+@app.route('/users/<user_id>/delete', methods=['DELETE'])
+def delete_user(id):
+    response = {}
+    user = User.query.get(id)
+    response['id'] = user.id
+    db.session.delete(user)
+    db.session.commit()
+    return {'status':'ok', 'message': 'Successfully deleted account.'}

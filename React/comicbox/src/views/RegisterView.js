@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import PersonIcon from '@mui/icons-material/Person';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -97,12 +98,18 @@ export default function Signup() {
               sx={{ mt: 3, mb: 2 }}
             >
               Create Account
-            </Button>
+              </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="/" variant="body2">
+                  {"Already have an account? Login now."}
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
-
   </div>
 );
 }

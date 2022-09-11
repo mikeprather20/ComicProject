@@ -35,7 +35,7 @@ export default function App() {
           <Route path='/comicbox' element={<ComicBox />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/login' element={<Login logMeIn={logMeIn} />} />
+          <Route path='/' element={<Login logMeIn={logMeIn} />} />
         </Routes>
 
       </div>
