@@ -33,6 +33,10 @@ export default function Login(){
       username: data.get('username'),
       password: data.get('password'),
     });
+
+    
+
+
     // Send Request To Flask
     return fetch('http://localhost:5000/api/login', {
       'method': 'POST',
