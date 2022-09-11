@@ -18,7 +18,6 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)
     apitoken = db.Column(db.String, default=None, nullable=True)
-    # comics = db.relationship({"child"})
     #joining comics to user
     userbox = db.relationship(
         'Comic',

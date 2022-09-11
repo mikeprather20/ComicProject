@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchBar from '../components/SearchComp';
-import NavBar from '../components/Nav';
+
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //need to make it contenual or load per scroll?
 
@@ -19,9 +19,10 @@ const theme = createTheme();
 
 export default function SearchComic() {
   return (
+    <div>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      navbar goes here{NavBar}
+      navbar goes here
       <main>
         <Box
           sx={{
@@ -81,6 +82,7 @@ export default function SearchComic() {
         </Container>
       </main>
     </ThemeProvider>
+    </div>
   );
 }
 

@@ -7,7 +7,7 @@ from flask_login import current_user
 from werkzeug.security import check_password_hash
 
 # import models
-from app.models import User
+from app.models import User, Comic
 from app.models import db
 
 # Import Basic Auth
@@ -154,14 +154,26 @@ def storeComic():
 
 # not sure if these are needed
 ####################################################
-@app.route('/add', methods = ["GET","POST"])
-def addToBox():
-        return "hi"
+
+#these are not quite right but on the right track
+
+@app.route('/comicbox/<comic_id>/add', methods=["POST"])
+def addToBox(comic):
+    data = request.json
+    comic_id = data['ComicId']
+    comic =Comic.query.get(comic_id)
+    comic.addToBox(comic)
+    return {'status': 'ok','message': 'Succesfully added comic to users box.'}
+
+@app.route('/comicbox/<comic_id>/remove', methods=["POST"])
+def removeFromBox(comic):
+    data = request.json
+    comic_id = data['comicId']
+    comic = Comic.query.get(comic_id)
+    comic.removeFromBox(comic)
+    return {'status':'ok', 'message':'Successfully removed comic from box.'}
 
 
-@app.route('/remove', methods = ["GET","POST"])
-def removeFromBox():
-        return "hi"
 
 @app.route('/comicbox', methods = ["GET", "POST"])
 def comicbox():
