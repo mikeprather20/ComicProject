@@ -153,16 +153,16 @@ def editProfile(user_id):
 #SEARCH FOR COMIC
 #############################################################
 
-@app.route('/search', methods=["POST"])
-def comicSearch():
-        return "hi"
+# @app.route('/search', methods=["POST"])
+# def comicSearch():
+#         return "hi"
 
 
 #STORE COMIC IN USERS COMIC BOX
 ############################################################
-@app.route('/store', methods = ["GET","POST"])
-def storeComic():
-        return "hi"
+# @app.route('/store', methods = ["GET","POST"])
+# def storeComic():
+#         return "hi"
 
 
 # not sure if these are needed
@@ -190,9 +190,9 @@ def removeFromBox(comic):
 
 
 #USERS COMICBOX
-@app.route('/comicbox', methods = ["GET", "POST"])
-def comicbox():
-        return "hi"
+# @app.route('/comicbox', methods = ["GET", "POST"])
+# def comicbox():
+#         return "hi"
 
 
 ###########DELETE ACCOUNT################
