@@ -15,7 +15,7 @@ import { ComicBoxContext, LoginContext } from '../SharedState';
 import { useNavigate } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //need to make it contenual or load per scroll
+// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //make it contenual or load per scroll
 const style = {
   position: 'absolute' ,
   top: '50%',
@@ -48,7 +48,7 @@ export default function SearchComic() {
     fetch(`https://comicvine.gamespot.com/api/issues/?api_key=0978691a57028b3778e6de7880829c6d07b312a1&format=json&sort=name:asc&filter=name:${searchTerm}`)
       .then((res)=>res.json()).then(results=>(setCards(results.results),setLoading(false))).catch(e=>console.log(e))
   } 
-  
+  //THIS FUNCTION IS TO SAVE TO DATABASE...VERY BUGGY
   const handleAddToLibrary =(comic)=>{
     /*
       const req = {
@@ -74,6 +74,7 @@ export default function SearchComic() {
       // console.log(userComics)
   };
 
+//DONT BE GOING PLACES YOUR NOT SUPPOSE TO BE GOING TO!....
   useEffect(() => {
     if(!loggedin && seconds > 0){
       const intervalId = setInterval(() => {
@@ -87,7 +88,10 @@ console.log(loggedin)
     setTimeout(()=>{
       navigate('/')
     },3000)
-    return <h1 style={{textAlign:'center'}}>Ah, ah, ah, you didn't say the magic word! {seconds}</h1>
+    return <div>
+      <h1 style={{textAlign:'center'}}>YOU DIDNT SAY THE MAGIC WORD! {seconds}</h1>
+      <img position="center" src="https://thumbs.gfycat.com/CostlyDopeyAcornwoodpecker-size_restricted.gif" alt="" />
+      </div>
   }
   console.log(loggedin)
   

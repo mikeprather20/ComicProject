@@ -21,7 +21,7 @@ export default function Nav2() {
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       {loggedIn && <>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/comicbox">My Comics</a>
+          <a class="nav-link active" aria-current="page" href="/comicbox">My Box</a>
         </li>
           <li class="nav-item">
             <a class="nav-link" href="/search">Search for Comic</a>

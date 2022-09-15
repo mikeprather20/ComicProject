@@ -70,7 +70,10 @@ export default function Profile() {
     setTimeout(()=>{
       navigator('/')
     },3000)
-    return <h1 style={{textAlign:'center'}}>Ah, ah, ah, you didn't say the magic word! {seconds}</h1>
+    return<div>
+      <h1 style={{textAlign:'center'}}>YOU DIDN'T SAY THE MAGIC WORD! {seconds}</h1>
+      <img src="https://thumbs.gfycat.com/CostlyDopeyAcornwoodpecker-size_restricted.gif" alt="" />
+      </div>
   }
 
   return (
