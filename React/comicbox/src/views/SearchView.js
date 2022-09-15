@@ -15,7 +15,7 @@ import { ComicBoxContext, LoginContext } from '../SharedState';
 import { useNavigate } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 
-// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //make it contenual or load per scroll
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //make it contenual or load per scroll
 const style = {
   position: 'absolute' ,
   top: '50%',
@@ -75,25 +75,26 @@ export default function SearchComic() {
   };
 
 //DONT BE GOING PLACES YOUR NOT SUPPOSE TO BE GOING TO!....
-  useEffect(() => {
-    if(!loggedin && seconds > 0){
-      const intervalId = setInterval(() => {
-        setSeconds(prev=>prev-1);
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-  },[seconds]);
-console.log(loggedin)
-  if(!loggedin){
-    setTimeout(()=>{
-      navigate('/')
-    },3000)
-    return <div>
-      <h1 style={{textAlign:'center'}}>YOU DIDNT SAY THE MAGIC WORD! {seconds}</h1>
-      <img position="center" src="https://c.tenor.com/coLMP-Q02BYAAAAC/dennis-nedry-no.gif" alt="" />
-      </div>
-  }
-  console.log(loggedin)
+//   useEffect(() => {
+//     if(!loggedin && seconds > 0){
+//       const intervalId = setInterval(() => {
+//         setSeconds(prev=>prev-1);
+//       }, 1000);
+//       return () => clearInterval(intervalId);
+//     }
+//   },[seconds]);
+// console.log(loggedin)
+//   if(!loggedin){
+//     setTimeout(()=>{
+//       navigator('/')
+//     },3000)
+//     return
+//        <div>
+//       <h1 style={{textAlign:'center'}}>YOU DIDNT SAY THE MAGIC WORD! {seconds}</h1>
+//        <img position="center" src="https://c.tenor.com/coLMP-Q02BYAAAAC/dennis-nedry-no.gif" alt="" />
+//        </div>
+//     }
+  // console.log(loggedin)
   
   return (
   <div>

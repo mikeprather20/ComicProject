@@ -58,23 +58,23 @@ export default function Profile() {
       })
   };
   
-  useEffect(() => {
-    if(!loggedIn && seconds > 0){
-      const intervalId = setInterval(() => {
-        setSeconds(prev=>prev-1);
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-  },[seconds]);
-  if(!loggedIn){
-    setTimeout(()=>{
-      navigator('/')
-    },3000)
-    return<div>
-      <h1 style={{textAlign:'center'}}>YOU DIDN'T SAY THE MAGIC WORD! {seconds}</h1>
-      <img src="https://c.tenor.com/Smf_tFZV2AAAAAAM/dennis-nedry-laughing-hysterically.gif" alt="" />
-      </div>
-  }
+  // useEffect(() => {
+  //   if(!loggedIn && seconds > 0){
+  //     const intervalId = setInterval(() => {
+  //       setSeconds(prev=>prev-1);
+  //     }, 1000);
+  //     return () => clearInterval(intervalId);
+  //   }
+  // },[seconds]);
+  // if(!loggedIn){
+  //   setTimeout(()=>{
+  //     navigator('/')
+  //   },3000)
+  //   return <div>
+  //     <h1 style={{textAlign:'center'}}>YOU DIDN'T SAY THE MAGIC WORD! {seconds}</h1>
+  //     <img src="https://c.tenor.com/Smf_tFZV2AAAAAAM/dennis-nedry-laughing-hysterically.gif" alt="" />
+  //     </div>
+  // }
 
   return (
     <ThemeProvider theme={theme}>

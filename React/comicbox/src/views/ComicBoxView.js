@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Modal from '@mui/material/Modal';
 import { ComicBoxContext, LoginContext } from '../SharedState';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const stat_cards={
   " Superman - Birthright 2": {
@@ -186,26 +186,25 @@ export default function ComicBox() {
     setCards(cards)
   }
 
-  useEffect(() => {
-    if(!loggedIn && seconds > 0){
-      const intervalId = setInterval(() => {
-        setSeconds(prev=>prev-1);
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-  },[seconds]);
-  if(!loggedIn){
-    setTimeout(()=>{
-      navigator('/')
-    },3000)
-    return <div>
-            <h1 style={{textAlign:'center'}}>YOU DIDN'T SAY THE MAGIC WORD! {seconds}</h1>
-            <img src="https://thumbs.gfycat.com/CostlyDopeyAcornwoodpecker-size_restricted.gif" alt="" />
-            </div>
-    
-  }
+  // useEffect(() => {
+  //   if(!loggedIn && seconds > 0){
+  //     const intervalId = setInterval(() => {
+  //       setSeconds(prev=>prev-1);
+  //     }, 1000);
+  //     return () => clearInterval(intervalId);
+  //   }
+  // },[seconds]);
+  // if(!loggedIn){
+  //   setTimeout(()=>{
+  //     Navigator('/')
+  //   },3000)
+  //   return <div>
+  //           <h1 style={{textAlign:'center'}}>YOU DIDN'T SAY THE MAGIC WORD! {seconds}</h1>
+  //           <img src="https://thumbs.gfycat.com/CostlyDopeyAcornwoodpecker-size_restricted.gif" alt="" />  
+  //           </div>
+  // }
+  // console.log(userComics);
 
-  console.log(userComics);
   return (
     <div>
     <ThemeProvider theme={theme}>
