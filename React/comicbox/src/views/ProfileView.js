@@ -72,7 +72,7 @@ export default function Profile() {
     },3000)
     return<div>
       <h1 style={{textAlign:'center'}}>YOU DIDN'T SAY THE MAGIC WORD! {seconds}</h1>
-      <img src="https://thumbs.gfycat.com/CostlyDopeyAcornwoodpecker-size_restricted.gif" alt="" />
+      <img src="https://c.tenor.com/Smf_tFZV2AAAAAAM/dennis-nedry-laughing-hysterically.gif" alt="" />
       </div>
   }
 

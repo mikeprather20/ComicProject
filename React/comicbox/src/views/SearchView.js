@@ -90,7 +90,7 @@ console.log(loggedin)
     },3000)
     return <div>
       <h1 style={{textAlign:'center'}}>YOU DIDNT SAY THE MAGIC WORD! {seconds}</h1>
-      <img position="center" src="https://thumbs.gfycat.com/CostlyDopeyAcornwoodpecker-size_restricted.gif" alt="" />
+      <img position="center" src="https://c.tenor.com/coLMP-Q02BYAAAAC/dennis-nedry-no.gif" alt="" />
       </div>
   }
   console.log(loggedin)
