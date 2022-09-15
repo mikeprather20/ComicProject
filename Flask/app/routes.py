@@ -1,5 +1,6 @@
+import sys
 from app.apiauthhelper import basic_auth, token_auth
-from flask import request
+from flask import request, jsonify
 from app import app
 
 # import login funcitonality
@@ -15,8 +16,9 @@ from flask_basicauth import BasicAuth
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 basic_auth = HTTPBasicAuth()
 
-#HELLO WORLD
+# HELLO WORLD
 #################################################################
+
 
 @app.route('/hi')
 def hi():
@@ -31,10 +33,11 @@ def hi():
 def getToken():
     user = basic_auth.current_user()
     return {
-                'status': 'ok',
-                'message': "You have successfully logged in",
-                'data':  user.to_dict()
-            }
+        'status': 'ok',
+        'message': "You have successfully logged in",
+        'data':  user.to_dict()
+    }
+
 
 @app.route('/api/login', methods=["POST"])
 def apiLogMeIn():
@@ -51,11 +54,11 @@ def apiLogMeIn():
             return {
                 'status': 'ok',
                 'message': "You have successfully logged in",
-                'data': { 
+                'data': {
                           'id': user.id,
                           'username': user.username,
                           'email': user.email
-                        }
+                }
             }
         return {
             'status': 'not ok',
@@ -67,12 +70,12 @@ def apiLogMeIn():
     }
 
 
-#LOG OUT
+# LOG OUT
 ##############################################################
 
 @app.route('/logout', methods=["POST"])
 def logMeOut():
-        return "hi"
+    return "hi"
 
 
 # SIGN UP
@@ -97,106 +100,105 @@ def SignMeUp():
     return {
         'status': 'ok',
         'message': "You have successfully Signed up",
-        'data': { 
+        'data': {
                   'username': username,
                   'email': email
-                }
+        }
     }
 
 
-#EDIT PROFILE
+# EDIT PROFILE
 ##########################################################
 
 @app.route('/users/<user_id>/edit', methods=["GET", "POST"])
 def editProfile(user_id):
 
     # Get User Information
-    user = User.query.get(user_id)
-    
+    user = User.query.get_or_404(user_id)
+
     if request.method == "POST":
-        
+
         # Get Request Data
-        data = request.json
+        data = request.get_json()
+
         email = data['email']
         password = data['password']
-        
+
         if user:
             # Update User Information
-            user.email=email
-            user.password=password
-            
+            user.email = email
+            user.password = password
+
             # Save To DB
             print(user.email)
             # db.session.update(user)
             db.session.commit()
-            
+
             # Return Updated Information
             return {
                 'status': 'ok',
                 'message': "You have successfully updated your information.",
                 # 'data':  user.to_dict()
-                'data': { 
+                'data': {
                           'id': user.id,
                           'username': user.username,
                           'email': user.email
-                        }
-                    }
-    
-    # Return User Information
-    return { 
-              'id': user.id,
-              'username': user.username,
-              'email': user.email
+                }
             }
 
-
-#SEARCH FOR COMIC
-#############################################################
-
-# @app.route('/search', methods=["POST"])
-# def comicSearch():
-#         return "hi"
-
-
-#STORE COMIC IN USERS COMIC BOX
-############################################################
-# @app.route('/store', methods = ["GET","POST"])
-# def storeComic():
-#         return "hi"
+    # Return User Information
+    return {
+        'id': user.id,
+        'username': user.username,
+        'email': user.email
+    }
 
 
-# not sure if these are needed
-####################################################
-#these are not quite right but on the right track
+# SEARCH FOR COMIC
+#################################################
 
 
-#ADD COMIC TO  USERS BOX
+# ADD COMIC TO  USERS BOX
 @app.route('/api/box/add', methods=["POST"])
-def addToBox(comic):
-    data = request.json
-    comic_id = data['ComicId']
-    comic =Comic.query.get(comic_id)
-    comic.addToBox(comic)
-    return {'status': 'ok','message': 'Succesfully added comic to users box.'}
+def addToBox():
+    comic_add_data = request.get_json()
 
-#REMOVE COMIC FROM USERS BOX
+    user_id = comic_add_data["user_id"]
+    comic_dat = comic_add_data["comic"]
+    comic = Comic(issue_img=comic_dat['issue_img'], volume=comic_dat['volume'],
+                  issue_number=comic_dat['issue_number'], issue_name=comic_dat['issue_name'])
+    print(comic)
+    db.session.add(comic)
+    db.session.commit()
+    print("added comic")
+    user = User.query.get_or_404(user_id)
+    
+    user.userbox.add(comic)
+    db.session.commit()
+    return {'status': 'ok', 'message': 'Succesfully added comic to users box.'}
+
+# REMOVE COMIC FROM USERS BOX
+
+
 @app.route('/comicbox/<comic_id>/remove', methods=["POST"])
-def removeFromBox(comic):
-    data = request.json
-    comic_id = data['comicId']
+def removeFromBox(comic_id):
+    data = request.get_json()
+    user_id = data['user']
+    user = User.query.get(user_id)
     comic = Comic.query.get(comic_id)
-    comic.removeFromBox(comic)
-    return {'status':'ok', 'message':'Successfully removed comic from box.'}
+
+    user.userbox.remove(comic)
+    return {'status': 'ok', 'message': 'Successfully removed comic from box.'}
 
 
-#USERS COMICBOX
+# USERS COMICBOX
 # @app.route('/comicbox', methods = ["GET", "POST"])
 # def comicbox():
 #         return "hi"
 
 
 ###########DELETE ACCOUNT################
-#may incorporate this
+# may incorporate this
 
 @app.route('/users/<user_id>/delete', methods=['DELETE'])
 def delete_user(id):
@@ -205,4 +207,4 @@ def delete_user(id):
     response['id'] = user.id
     db.session.delete(user)
     db.session.commit()
-    return {'status':'ok', 'message': 'Successfully deleted account.'}
+    return {'status': 'ok', 'message': 'Successfully deleted account.'}

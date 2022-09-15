@@ -1,12 +1,15 @@
 //NAVBAR MADE WITH BOOTSTRAP
 
-import React from 'react'
+import React,{useContext} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { LoginContext } from '../SharedState'
+
 // import { Link } from 'react-router-dom';
 
 export default function Nav2() {
-
-
-
+  const loggedIn = sessionStorage.getItem('userId')
+  const navigator = useNavigate()
+  console.log(loggedIn)
   return (
     <div>
         <nav class="navbar navbar-expand-lg bg-light">
@@ -16,18 +19,21 @@ export default function Nav2() {
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      {loggedIn && <>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/comicbox">My Comics</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/search">Search for Comic</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Edit Profile</a>
-        </li>
-        {/* <li className="nav-item" onClick={this.props.logMeOut}>
-          <Link className="nav-link" to="/">Log Out</Link>
-        </li> */}
+          <li class="nav-item">
+            <a class="nav-link" href="/search">Search for Comic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Edit Profile</a>
+          </li>
+          <li className="nav-item" onClick={()=>(sessionStorage.clear(), navigator('/'))}>
+            <a class="nav-link" href="/">Log Out</a>
+          </li>
+        </> }
+
       </ul>
     </div>
   </div>

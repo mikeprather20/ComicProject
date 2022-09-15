@@ -7,6 +7,7 @@ import Search from './views/SearchView'
 import Register from './views/RegisterView'
 import Nav2 from './components/Nav2'
 import Nav from './components/Nav'
+import { LoginProvider, ComicBoxProvider } from './SharedState'
 
 export default function App() {
 
@@ -23,6 +24,7 @@ export default function App() {
   const logMeIn = (user) => {
     setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
+    
   };
 
   const logMeOut = () => {
@@ -31,25 +33,31 @@ export default function App() {
   };
 
 
-  return (
+   return (
+    <LoginProvider>
+   <ComicBoxProvider>
+    
+      
+      <BrowserRouter>
 
-    <BrowserRouter>
+        <div className='main'>
+        <Nav/>
 
-      <div className='main'>
-      <Nav/>
+        <Nav2 logMeOut={logMeOut} />
 
-      <Nav2 logMeOut={logMeOut} />
+          <Routes>
+            <Route path='/search' element={<Search />} />
+            <Route path='/comicbox' element={<ComicBox />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/' element={<Login logMeIn={logMeIn} />} />
+          </Routes>
 
-        <Routes>
-          <Route path='/search' element={<Search />} />
-          <Route path='/comicbox' element={<ComicBox />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/' element={<Login logMeIn={logMeIn} />} />
-        </Routes>
+        </div>
 
-      </div>
-
-    </BrowserRouter>
+      </BrowserRouter>
+    
+    </ComicBoxProvider>
+    </LoginProvider>
   )
 };

@@ -17,6 +17,10 @@ export default function ComicBoxComp(user) {
   const removeFromBox = async (comic) => {
     const res = await fetch('http://localhost:5000/user/comic/remove', {
         method: "POST",
+        headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": 'application/json'
+        },
         body: JSON.stringify({ comicId: comic.id })
     });
     const data = await res.json();

@@ -14,18 +14,7 @@ export default function SearchComp(comic, addToBox, user) {
 
 
 
-// const connect2api = async (comicName)=>{
-//     const res = await fetch(`https://comicvine.gamespot.com/api/volumes/?api_key=0978691a57028b3778e6de7880829c6d07b312a1&format=json&sort=name:dec&filter=name:${search}`)
-//     const data = await res.json()
-//     console.log(data)
-//     return data
-//   };
 
-//   const loadData = async (comicName)=>{
-//     const data = await connect2api(comicName)
-//     const myComic = [data]
-//     myComic.map(getComic)
-//   };
 
     //THIS IS A FUNCTION THAT ADDS AND SAVES A COMIC TO A USERS COMIC BOX
     //AND STORES THE COMIC DATA IN OUR API SO WE DONT HAVE TO CALL FOR IT AGAIN
@@ -41,7 +30,7 @@ export default function SearchComp(comic, addToBox, user) {
       });
       const data = await res.json();
       console.log(data)
-    };
+  };
 
   const handleClick = (comic) =>{
       addToBox(comic)

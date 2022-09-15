@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,12 +8,30 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import EditIcon from '@mui/icons-material/Edit';
+import Modal from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { LoginContext } from '../SharedState';
+import {  useNavigate } from 'react-router-dom';
 
-
+const style = {
+  position: 'absolute' ,
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 const theme = createTheme();
 
 export default function Profile() {
+  const [showModal, setShowModal] = useState(false);
+  const [loggedIn,] = useContext(LoginContext)
+  const uid = sessionStorage.getItem('userId')
+  const [seconds, setSeconds] = useState(3);
+  const navigator = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -21,7 +39,39 @@ export default function Profile() {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    return fetch(`/users/${uid}/edit`, {
+      'method': 'POST',
+      headers : {
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+        email: data.get('email'),
+        password: data.get('password'),
+      })
+    })
+    // Navigate To ComicBox Successful Login
+    .then(response => response.json())
+    .then(data => 
+      {console.log(data);
+        setShowModal(true);
+      })
   };
+  
+  useEffect(() => {
+    if(!loggedIn && seconds > 0){
+      const intervalId = setInterval(() => {
+        setSeconds(prev=>prev-1);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+  },[seconds]);
+  if(!loggedIn){
+    setTimeout(()=>{
+      navigator('/')
+    },3000)
+    return <h1 style={{textAlign:'center'}}>Ah, ah, ah, you didn't say the magic word! {seconds}</h1>
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,6 +125,20 @@ export default function Profile() {
             </Button>
           </Box>
         </Box>
+        <Modal
+          onClose={()=>setShowModal(false)}
+          open={showModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Successfully updated profile.
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            </Typography>
+          </Box>
+        </Modal>
       </Container>
     </ThemeProvider>
 );

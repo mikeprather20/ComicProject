@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,15 +11,35 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import { LoginContext } from '../SharedState';
 
+const style = {
+  position: 'absolute' ,
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const theme = createTheme();
 
 export default function Login(){
-
+  const [showModal,setShowModal]=useState(false)
+  const [loggedIn,setLoggedIn] = useContext(LoginContext)
+  
   // Assign Use Navigate Constant
   const navigate = useNavigate()
-  
+  const saveUser = (user)=>{
+    sessionStorage.setItem('userId', user.id);//CHANGE THIS TO THE USER ID RETURNED FROM BACKEND
+    sessionStorage.setItem('user_comics', [])
+    setLoggedIn(true)
+    navigate('/search', user.data)
+  }
   // Login Submit Button
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,7 +50,7 @@ export default function Login(){
     });
   
     // Send Request To Flask
-    return await fetch('http://localhost:5000/api/login', {
+    return await fetch('http://127.0.0.1:5000/api/login', {
       'method': 'POST',
       headers : {
         'Content-Type': 'application/json'
@@ -42,8 +62,8 @@ export default function Login(){
     })
     // Navigate To ComicBox Successful Login
     .then(response => response.json())
-    .then(data => data.status === 'ok' ? navigate('/comicbox', data.data) : console.log("Login Failed."))
-    .catch(error => console.log(error))
+    .then(data => data.status === 'ok' ? saveUser(data.data) : setShowModal(true))
+    .catch(error => setShowModal(true))
   };
 
   return (
@@ -102,7 +122,22 @@ export default function Login(){
               </Grid>
             </Grid>
           </Box>
-        </Box>
+        </Box>            
+        <Modal
+          onClose={()=>setShowModal(false)}
+          open={showModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Error
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Login Failed.
+            </Typography>
+          </Box>
+        </Modal>
       </Container>
     </ThemeProvider>
   );
