@@ -43,7 +43,7 @@ export default function Signup() {
     })
     // Navigate To ComicBox Successful Login
     .then(response => response.json())
-    .then(data => data.status === 'ok' ? navigate('/comicbox', data.data) : console.log("Signup Failed."))
+    .then(data => data.status === 'ok' ? navigate('/', data.data) : console.log("Signup Failed."))
     .catch(error => console.log(error))
   }
 
